@@ -40,6 +40,15 @@ The vehicle was able to make multiple loops around the simulated track, albeit w
 
 ![alt text][image3]
 
+## Reflection
+
+1. Initial conditions matter:  I naively thought that initial conditions were not terribly important--I believed the optimization routine would quickly overcome poor initial guesses. However, since twiddle is a hill-climbing algorithm it is susceptible to local minima. This appears to be the reason the retraining did not have any effect. Perhaps a greater perturbation to the parameters during retraining could help escape those local minima.
+
+2. Twiddle was difficult to implement "live": My implementation of twiddle occurred as the car was driving. Though it seemed to work, this seems inherently dangerous, especially for a real vehicle. It seems another approach should be possible.
+
+3. Speed is coupled to steering: This may seem obvious, but speed adjustments were critical to ensuring the controller kept the car on the road.
+
+
 ## Basic Build Instructions
 
 1. Clone this repo.

@@ -14,10 +14,10 @@ void PID::Init(double Kp_, double Ki_, double Kd_) {
    Kd = Kd_;
    Ki = Ki_;
    i_error = 0.0;
-   ps = {Kp, Kd, Ki};
+   ps = {Kp, Ki, Kd};
    twiddle_step = 1;
    dp_i = 0;
-   dp = {Kp/10.0, Kd/10.0, Ki/10.0};
+   dp = {Kp/10.0, Ki/10.0, Kd/10.0};
 
 }
 
@@ -37,7 +37,7 @@ double PID::TotalError() {
    * Calculate and return the total error
    */
 
-  double alpha = - ps[0] * p_error - ps[1] * d_error -  ps[2] * i_error;
+  double alpha = - ps[0] * p_error - ps[1] * i_error -  ps[2] * d_error;
   return alpha;  
 }
 
@@ -66,7 +66,7 @@ void PID::RetrainPID() {
   for (int i = 0; i < dp.size(); i++) {
     dp[i] = dp[i] * 1000; 
   }
-  i_error = 0.0;
+  
 }
 
 //std::vector<double> PID::Twiddle(std::vector<double> &dp, double& best_cte, double cte) {

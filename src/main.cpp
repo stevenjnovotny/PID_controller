@@ -46,15 +46,15 @@ int main() {
    * Initialize the pid variable.
    */ 
 
-  double kd = 0.0001;
-  double kp = 0.2;
-  double ki = 0.1;
-  pid.Init(kp, kd, ki);
-  spd_pid.Init(0.3, 0.001, 0.0);
+  double kd = 0.01;
+  double kp = 0.1;
+  double ki = 0.0001;
+  pid.Init(kp, ki, kd);
+  spd_pid.Init(0.3, 0.00, 0.001);
   int iter = 0; 
   double tol = 0.0005  ;
   double best_cte = 100000;
-  double throttle_set = 0.3;
+  double throttle_set = 0.2;
   bool tune_steering = false;
   bool hs_tuning = false;
   bool tune_throttle = false;
@@ -90,7 +90,7 @@ int main() {
 
           double spd_err = speed - target_speed;     
 
-          if (iter == 50) {
+          if (iter == 20) {
             best_cte = fabs(cte);
             tune_steering = true;
             //spd_tuned = true;
