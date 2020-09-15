@@ -48,7 +48,7 @@ int main() {
 
   double kd = 0.01;
   double kp = 0.1;
-  double ki = 0.000;
+  double ki = 0.0001;
   pid.Init(kp, ki, kd);
   spd_pid.Init(0.3, 0.00, 0.001);
   int iter = 0; 
